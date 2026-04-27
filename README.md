@@ -14,12 +14,14 @@ This is the starter repository for **AI Foundations: Architecting the Next Gener
 ├── setup.sh                           # Run once — renames claude-config to .claude
 ├── docs/
 │   ├── PRD.md                         # Template for your Product Requirements Document
-│   └── DESIGN.md                      # Template for your UI/UX design brief
+│   ├── DESIGN.md                      # Template for your UI/UX design brief
+│   └── BUILDPLAN.md                   # Template for your phased, context-window-sized build plan
 └── claude-config/                     # Will become .claude/ after running setup.sh
     ├── settings.example.json          # Example hooks config (rename to settings.json)
     └── skills/
         ├── pm-interview/              # Have Claude interview you to produce a PRD
         ├── design-brief/              # Have Claude interview you to produce a design brief
+        ├── build-plan/                # Slice the project into phases that fit one session each
         ├── rubber-duck-quiz/          # Quiz yourself on code before committing
         ├── explain-this-code/         # Have Claude teach you code at the right depth
         ├── architecture-diagram/      # Generate + critique Mermaid diagrams
@@ -40,12 +42,17 @@ This is the starter repository for **AI Foundations: Architecting the Next Gener
    > Use the pm-interview skill to help me write a PRD for [your idea]
    ```
 7. **Save the PRD** to `docs/PRD.md`. Claude will update it as you go.
-8. **Bootstrap your app** with `npm create cloudflare@latest` once the PRD is clear enough.
-9. **Before writing UI code**, run the design-brief interview:
+8. **Run the design-brief interview** before writing UI code:
    ```
    > Use the design-brief skill to help me fill out docs/DESIGN.md
    ```
    Defaults are React + Headless UI + Tailwind. The brief captures any deviation.
+9. **Bootstrap your app** with `npm create cloudflare@latest` once the PRD and design brief are clear enough.
+10. **Run the build-plan interview** after bootstrapping, before writing real features:
+    ```
+    > Use the build-plan skill to help me fill out docs/BUILDPLAN.md
+    ```
+    Output is 3–6 phases sized to fit one Claude Code session each. Re-run it when the plan drifts from reality.
 
 ## The skills
 
@@ -55,6 +62,7 @@ Use them like this:
 |---|---|
 | Starting a new project or feature | `pm-interview` |
 | About to build UI for the first time | `design-brief` |
+| About to start coding a project | `build-plan` |
 | About to commit a chunk of AI-written code | `rubber-duck-quiz` |
 | Staring at code you don't fully grasp | `explain-this-code` |
 | Planning architecture or reviewing your own | `architecture-diagram` |
