@@ -440,6 +440,7 @@
   <h4>Contents</h4>
   <ol>
     <li><a href="#goals">Learning outcomes &amp; how we grade them</a></li>
+    <li><a href="#prereq">Pre-course setup</a></li>
     <li><a href="#pedagogy">The pedagogy: how we keep you from vibe-coding</a></li>
     <li><a href="#demo-project">The in-class demo project</a></li>
     <li><a href="#starter">The starter repo &amp; skills</a></li>
@@ -447,7 +448,6 @@
     <li><a href="#week2">Week 2 — Agentic workflow</a></li>
     <li><a href="#week3">Week 3 — Choosing tools, scaling autonomy</a></li>
     <li><a href="#week4">Week 4 — Ship &amp; demo</a></li>
-    <li><a href="#prereq">Pre-course setup</a></li>
   </ol>
 </div>
 
@@ -482,9 +482,28 @@
 
 <hr class="fancy">
 
+<!-- PREREQ -->
+<section id="prereq">
+  <h2><span class="numeral">Section 02</span>Pre-course setup</h2>
+  <p class="lead">Send this list one week before session one. Solving install problems on the fly will eat week 1.</p>
+
+  <ol>
+    <li>Install Node.js 20+ (ideally via <code>nvm</code>).</li>
+    <li>Install Claude Code and sign in. Verify with <code>claude --version</code>.</li>
+    <li>Create a free Cloudflare account. Verify your email.</li>
+    <li>Install Wrangler globally: <code>npm install -g wrangler</code>, then <code>wrangler login</code>.</li>
+    <li>Install Git and be signed into GitHub (SSH keys set up).</li>
+    <li>Choose a code editor. VS Code or Cursor both fine; Claude Code runs in the terminal regardless.</li>
+    <li>Optional: a Loom, Screencastify, or YouTube account for the walkthrough video.</li>
+    <li>Bring an idea — or permission to be interviewed by Claude about not having one yet.</li>
+  </ol>
+</section>
+
+<hr class="fancy">
+
 <!-- PEDAGOGY -->
 <section id="pedagogy">
-  <h2><span class="numeral">Section 02</span>Pedagogy: how we keep you from vibe-coding</h2>
+  <h2><span class="numeral">Section 03</span>Pedagogy: how we keep you from vibe-coding</h2>
   <p class="lead">The central risk of AI-assisted development is shipping code you couldn't defend. Five mechanisms push against that, applied throughout the course.</p>
 
   <h3>1. Commit-level rubber-duck quizzes</h3>
@@ -507,7 +526,7 @@
 
 <!-- DEMO PROJECT -->
 <section id="demo-project">
-  <h2><span class="numeral">Section 03</span>The in-class demo project</h2>
+  <h2><span class="numeral">Section 04</span>The in-class demo project</h2>
   <p class="lead">Across all four weeks the instructor builds one small app live — the Community Events Board — so students see the full arc from zero to deployed.</p>
 
   <p><strong>The brief:</strong> A public website for a fictional small town that lists upcoming community events. Any resident can see the list. Approved admins can add events through a simple form. Events have a title, description, date, category, and optionally an image. There's a read-only JSON API so the local newspaper could pull the feed.</p>
@@ -533,7 +552,7 @@
 
 <!-- STARTER -->
 <section id="starter">
-  <h2><span class="numeral">Section 04</span>The starter repo &amp; the skills</h2>
+  <h2><span class="numeral">Section 05</span>The starter repo &amp; the skills</h2>
   <p class="lead">Every student starts with the same skeleton. The skeleton embeds the pedagogy — it doesn't just scaffold code, it scaffolds <em>how you work</em>.</p>
 
   <h3>What's in the starter</h3>
@@ -878,25 +897,6 @@
       </div>
     </div>
   </div>
-</section>
-
-<hr class="fancy">
-
-<!-- PREREQ -->
-<section id="prereq">
-  <h2><span class="numeral">Section 05</span>Pre-course setup</h2>
-  <p class="lead">Send this list one week before session one. Solving install problems on the fly will eat week 1.</p>
-
-  <ol>
-    <li>Install Node.js 20+ (ideally via <code>nvm</code>).</li>
-    <li>Install Claude Code and sign in. Verify with <code>claude --version</code>.</li>
-    <li>Create a free Cloudflare account. Verify your email.</li>
-    <li>Install Wrangler globally: <code>npm install -g wrangler</code>, then <code>wrangler login</code>.</li>
-    <li>Install Git and be signed into GitHub (SSH keys set up).</li>
-    <li>Choose a code editor. VS Code or Cursor both fine; Claude Code runs in the terminal regardless.</li>
-    <li>Optional: a Loom, Screencastify, or YouTube account for the walkthrough video.</li>
-    <li>Bring an idea — or permission to be interviewed by Claude about not having one yet.</li>
-  </ol>
 </section>
 
 <footer>
