@@ -488,7 +488,7 @@
   <p class="lead">The central risk of AI-assisted development is shipping code you couldn't defend. Five mechanisms push against that, applied throughout the course.</p>
 
   <h3>1. Commit-level rubber-duck quizzes</h3>
-  <p>Before every logical commit, you invoke the <code>rubber-duck-quiz</code> skill. Claude asks you four kinds of questions about the diff (what / why / what-if / teach-it-back). Gaps get noted. The commit message has to summarize the change in your own words.</p>
+  <p>Before every logical commit, you invoke the <code>rubber-duck-quiz</code> skill. Claude asks you four kinds of questions about the diff (what / why / what-if / teach-it-back). Gaps get noted. Claude can draft the commit message and run <code>git commit</code> — that's encouraged — but the quiz is the gate: you must understand the change well enough to defend it before it lands.</p>
 
   <h3>2. Diff review is non-negotiable (weeks 1–2)</h3>
   <p><code>--dangerously-skip-permissions</code> and other auto-accept modes are <strong>forbidden</strong> until week 3. You read every diff. Starting week 3 you can use scoped autonomy for well-tested subtasks, but you still review at the turn boundary.</p>
@@ -719,7 +719,7 @@
           <li>Write the test first (with Claude's help, but you direct).</li>
           <li>Let Claude implement. <strong>Read every diff.</strong></li>
           <li>Invoke <code>rubber-duck-quiz</code> before committing.</li>
-          <li>Commit with a human-written summary message.</li>
+          <li>Commit. Claude can write the message and run <code>git commit</code> — the rubber-duck-quiz is the gate, not the message itself.</li>
         </ol>
         <p>Instructor circulates. Watch for students auto-accepting diffs — call it out gently.</p>
       </div>

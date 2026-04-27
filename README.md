@@ -83,7 +83,7 @@ Then either keep the default `Stop` hook (runs tests when Claude finishes a turn
 ## Course rules
 
 - **No `--dangerously-skip-permissions` until week 3.** Read every diff.
-- **Every commit needs a human-written summary.** Use the rubber-duck-quiz skill before committing.
+- **Run `rubber-duck-quiz` before every meaningful commit.** Claude can draft the commit message and run `git commit` for you — that's encouraged. The rule is that you must understand the change well enough to defend it before it lands.
 - **Architecture diagrams get regenerated every week.** If it no longer matches the code, something drifted.
 - **Two videos required, both linked in this README:**
   - A **PRD explainer video** (≤5 min) recorded after week 1.
