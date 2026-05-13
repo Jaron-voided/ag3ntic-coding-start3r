@@ -83,8 +83,6 @@ If you want stricter behavior, swap the Stop hook for a `PostToolUse` hook (runs
 
 ## Your project links
 
-_Replace these once you deploy and record:_
-
-🔗 **Live site:** [https://your-project.pages.dev](https://your-project.pages.dev)
+🔗 **Live site:** [https://edgedesk.pages.dev](https://edgedesk.pages.dev)
 🎥 **PRD video:** [your-prd-video-link]
 🎥 **Demo video:** [your-demo-video-link]

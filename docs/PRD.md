@@ -1,105 +1,100 @@
-# Product Requirements Document (PRD)
+# Product Requirements Document — EdgeDesk
 
-_Fill this out by having a conversation with Claude. Don't try to write it alone on a blank page — that's what the AI is for. Use the `/skills/pm-interview` skill to drive the conversation._
-
-> **Status:** Draft / In Review / Locked
-> **Last updated:** YYYY-MM-DD
-> **Author:** Your name
-> **Stakeholder:** Yourself / Name of the business or person you're building for
+> **Status:** Draft
+> **Last updated:** 2026-05-07
+> **Author:** Jaron Singley
+> **Stakeholder:** Jaron's automation and web services clients
 
 ---
 
 ## 1. The problem
 
-_In one paragraph, what is the problem? Who has it? What do they do today without your tool? Why is the status quo bad enough that someone would switch?_
-
-**Bad example:** "People need a way to track tasks."
-**Good example:** "Maria, who owns Maria's Tacos, posts weekly specials on Instagram, Facebook, and a chalkboard out front. She updates each one manually on Sunday nights and forgets one about half the time, so customers show up expecting Tuesday's special on Wednesday. She'd pay $10/month to update once and have all three update automatically."
+Owner-operators of trades businesses (HVAC, construction, contracting) are buried in admin work on top of their actual jobs. They miss high-value calls because they're on a job site. They lose leads because there's no follow-up system. They can't afford a full-time assistant, and they don't have time to learn 10 different tools. Jaron already sells an automation stack that solves this — Twilio for missed-call lead capture, Airtable for CRM, n8n for orchestration, and Facebook auto-posting with AI-generated captions. The problem is delivery: clients don't have a clean, single place to interact with these services. EdgeDesk fixes that.
 
 ---
 
 ## 2. The user
 
-Who specifically will use this? Be concrete. If you can't name a real person (or a realistic archetype), go talk to people until you can.
-
-- **Primary user:**
-- **Their current workflow:**
-- **Their technical comfort:** _(Are they comfortable with a web app? A chat interface? Do they live in their email?)_
-- **What device will they use it on?** _(Phone, desktop, both?)_
+- **Primary user:** Owner-operator of a trades business (HVAC, contractor, roofer, etc.). Runs the business solo or with a small crew. High-ticket jobs, tight margins on admin time. Can't afford a receptionist. Not tech-savvy — if it takes more than a few taps, they won't use it.
+- **Their current workflow:** Miss a call → maybe call back later → lead goes cold. Posting to Facebook means logging in, writing something, hoping it looks professional. Customer list lives in their head or a notes app.
+- **Their technical comfort:** Low. Comfortable with smartphones. Will use a web app for demo purposes; eventually mobile-first.
+- **What device will they use it on?** Phone in the real world. Desktop browser for v1 demo.
+- **The moment they open EdgeDesk:** They've got 10 minutes between jobs. They want to know who called, who's waiting on a quote, and whether their Facebook post went out.
 
 ---
 
 ## 3. What success looks like
 
-How will you know this worked? Pick metrics you can actually measure.
-
-- **Must-have outcome:** _e.g. "Maria can update all three channels from one form in under 60 seconds."_
-- **Nice-to-have outcome:** _e.g. "Maria sees how many people clicked through from each channel."_
-- **Not a goal:** _e.g. "This is not a full CRM. We don't care about customer data."_
+- **Must-have outcome:** A client can log in, see their captured leads, upload a photo that automatically posts to Facebook, and access their deliverables — without touching Airtable, n8n, Gmail, or any other backend tool.
+- **Nice-to-have outcome:** Client manually adds a customer and it shows up in their lead list instantly.
+- **Not a goal for v1:** Analytics dashboards, revenue graphs, customer trend charts, multi-tenant client isolation, status monitoring for automations, or replacing any of the existing automation logic in n8n.
 
 ---
 
 ## 4. Core user stories
 
-List the things a user does with this product, in order of importance. Start with the single most important one. A good user story is "_As a [user], I want to [do thing] so that [outcome]._"
+1. **[Must]** As a client, I want to upload a photo to EdgeDrive so that it automatically posts to my Facebook page with an AI-generated caption — without me writing copy or logging into Facebook.
 
-1. **[Must]** As a _______, I want to _______ so that _______.
-2. **[Must]** ...
-3. **[Should]** ...
-4. **[Could]** ...
-5. **[Won't — this release]** ...
+2. **[Must]** As a client, I want to see the leads my automations captured (via Twilio SMS, web form, or website) as a simple Todo list so that I know who to follow up with without digging through texts, voicemails, or Airtable.
 
-_Use MoSCoW (Must / Should / Could / Won't) to force yourself to prioritize. If everything is a Must, nothing is._
+3. **[Must]** As a client, I want to access my deliverables and important links (my website, intake forms, assets Jaron has built) from one place so that I don't have to dig through emails to find them.
+
+4. **[Should]** As a client, I want to manually add a customer to my lead list so that people I meet in person are tracked alongside automated leads.
+
+5. **[Won't — v1]** As a client, I want to see an analytics dashboard showing customer upticks and revenue trends over time.
+
+6. **[Won't — v1]** As a client, I want to see real-time status indicators for each active automation (e.g., "missed call texting: active").
 
 ---
 
 ## 5. Out of scope
 
-_What are you explicitly NOT building? This is the most important section. Everything not listed as in-scope above is at risk of scope creep — name the things you've been tempted by and are choosing not to build._
-
-- ...
-- ...
+- **Analytics and reporting** — graphs, revenue trends, customer volume charts. Requires financial data connections that don't exist yet.
+- **Automation status monitoring** — showing whether n8n workflows are healthy. Important, but not needed to sign client #1.
+- **Multi-tenancy** — v1 assumes one client. Client isolation (Client A can't see Client B's data) is a v2 concern.
+- **Admin panel UI** — if something breaks, Jaron accesses the database directly. No built admin interface for v1.
+- **Full business OS** — leads, tasks, calendar, documents as a general small business management suite. That is a future phase, not v1.
+- **Mobile app** — v1 is a desktop web app. Mobile-responsiveness is a stretch goal, not a requirement.
 
 ---
 
 ## 6. Technical shape
 
-_This is where Claude can help most. Describe the shape, not the implementation. You'll refine this in code._
-
-- **Type of app:** _(Static site? Full-stack web app? API only?)_
-- **Does it need to store data?** _(If yes, what kind — structured records, files, both?)_
-- **Does it need authentication?** _(If yes, who can log in — you, your users, both?)_
-- **Does it need to call external services?** _(e.g. Instagram API, email sending, AI model)_
-- **Who pays for hosting?** _(This matters — Cloudflare's free tier is generous but not infinite.)_
+- **Type of app:** Full-stack web app. React frontend, Workers API backend.
+- **Does it need to store data?** Yes — file uploads (photos), deliverables/links, manually added customers. Lead data pulled from Airtable in v1; migrating to native D1 in v2.
+- **Does it need authentication?** Yes — single client login for v1 (username + password, JWT-based). No multi-tenancy or role management needed yet.
+- **Does it need to call external services?**
+  - **Airtable API** — read leads/customers for the Todo list
+  - **n8n webhook (live)** — Workers fires a POST after a photo is uploaded to R2; n8n handles AI caption + Facebook post
+- **Who pays for hosting?** Jaron. Cloudflare's free tier covers v1 comfortably.
 
 ### Proposed Cloudflare stack
 
-_Fill this in after discussing with Claude. Ask Claude to justify each choice._
-
 | Need | CF Product | Why |
 |---|---|---|
-| Hosting the web UI | | |
-| Backend logic | | |
-| Structured data | | |
-| File storage | | |
-| AI features | | |
+| Frontend hosting | **Pages** | Deploy React + Tailwind globally, zero config, free tier |
+| API / backend logic | **Workers + Hono** | Handle file uploads, Airtable fetches, auth, n8n webhook triggers |
+| File storage (EdgeDrive) | **R2** | Store uploaded photos; no egress fees; fires event to Worker on upload |
+| App data (deliverables, manual leads, sessions) | **D1** | Serverless SQL — stores links, manually added customers, JWT sessions; future home of all lead data |
+| Session / auth tokens | **KV** | Fast global key-value store for lightweight session lookups |
+| Lead data (v1 only) | **Airtable API** | Pull existing leads — migrate to D1 in v2 |
+| AI captions + Facebook posting | **n8n (existing, live)** | Already built and working — Workers fires webhook, n8n does the rest |
 
 ---
 
 ## 7. Risks and unknowns
 
-What could go wrong or surprise you? Be honest.
-
-- **Biggest risk:**
-- **Things I don't know how to do yet:**
-- **Things I'm assuming but haven't verified:**
+- **Biggest risk — Desktop UI metaphor:** Building a convincing "app launcher" experience (clickable icons that open panels or windows) in a web app is a UX challenge without a standard library solution. Needs a design decision before coding starts. → Tackle in `/design-brief` before writing any UI.
+- **n8n reliability:** If an automation fails silently after a webhook fires, the client sees no feedback. This is an n8n-side gap to close (error handling, retries) before onboarding real clients — not an EdgeDesk v1 feature.
+- **Airtable API rate limits:** Airtable's free tier has rate limits (5 req/sec). Fine for one client demo; becomes a problem at scale. Migrating to D1 in v2 removes this dependency entirely.
+- **Assumption to verify:** That the live n8n instance's webhook URL is stable and doesn't require auth headers that would complicate the Worker-to-n8n call.
 
 ---
 
 ## 8. Milestones
 
-A realistic plan for the next 3 weeks of building.
+- **Week 1 end:** Project scaffolded on Cloudflare Pages + Workers. Single-client auth working (login → JWT → protected routes). Airtable API connected and returning real leads. Deployed to a live URL — ugly but functional. You can log in and see a real lead list in a browser.
 
-- **Week 2 end:** _What's deployed and working?_
-- **Week 3 end:** _What's deployed and working?_
-- **Week 4 demo:** _What does the final walkthrough show?_
+- **Week 2 end:** EdgeDrive upload working (R2 storage → Worker → n8n webhook fires → Facebook post triggered). All three app panels functional: Lead/Todo list, EdgeDrive upload, Deliverables/Links page. Everything wired to real data. Showable to a real person as a working prototype.
+
+- **Week 3 demo:** Desktop homepage with app-launcher UI (clickable icons opening panels). Polish pass on layout and typography. Full demo flow works end-to-end: log in → see desktop → click CRM icon → see lead list → click EdgeDrive icon → upload photo → automation fires → Facebook post goes out.
