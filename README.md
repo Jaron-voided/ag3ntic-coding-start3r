@@ -84,5 +84,5 @@ If you want stricter behavior, swap the Stop hook for a `PostToolUse` hook (runs
 ## Your project links
 
 🔗 **Live site:** [https://edgedesk.pages.dev](https://edgedesk.pages.dev)
-🎥 **PRD video:** [your-prd-video-link]
+🎥 **PRD video:** [https://www.loom.com/share/14a923f7d4e34d3fb6cf4cf94a6763c3](https://www.loom.com/share/14a923f7d4e34d3fb6cf4cf94a6763c3)
 🎥 **Demo video:** [your-demo-video-link]
